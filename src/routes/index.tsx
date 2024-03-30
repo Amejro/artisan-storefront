@@ -1,54 +1,58 @@
 import { component$, useContext } from '@builder.io/qwik';
-import { Image } from 'qwik-image';
-import CollectionCard from '~/components/collection-card/CollectionCard';
-import { APP_STATE, HOMEPAGE_IMAGE } from '~/constants';
+import FeaturedProductCard from '~/components/fatured-product/FeaturedProductCard';
+import { APP_STATE } from '~/constants';
 
 export default component$(() => {
 	const collections = useContext(APP_STATE).collections;
+
 	return (
 		<div>
-			<div class="relative h-[600px]">
-				<div class="absolute inset-0 overflow-hidden">
-					<Image
-						layout="fullWidth"
-						class="h-full md:w-full"
-						width="800"
-						height="600"
-						src={HOMEPAGE_IMAGE}
-						alt="Background header photo of bicycle taken by Mikkel Bech"
-					/>
-					<div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-700 mix-blend-overlay" />
-				</div>
-				<div class="absolute inset-0 bg-gray-900 opacity-50" />
-				<div class="relative max-w-3xl mx-auto py-32 px-6 flex flex-col items-center text-center sm:py-64 lg:px-0">
-					<div class="relative bg-zinc-800 bg-opacity-0 rounded-lg p-0">
-						<h1 class="text-6xl text-transparent bg-clip-text font-extrabold tracking-normal lg:text-6xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">
-							{$localize`Vendure Qwik Starter`}
-						</h1>
+			<div class="grid grid-cols-1 md:grid-cols-2 bg-gray-900">
+				<div class=" order-last md:order-first  w-full self-center py-8 md:py-1">
+					<div class=" text-left flex flex-col items-center ">
+						<h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+							Best products for winter
+						</h2>
+						<p class=" text-lg  leading-8 text-gray-300">Feel the magic of christmas time</p>
+						<div class="mt-5 flex items-center justify-center gap-x-6 lg:justify-start">
+							<a href="#" class="text-sm font-semibold leading-6 text-white">
+								SEE ALL
+								<span aria-hidden="true">→</span>
+							</a>
+						</div>
 					</div>
-
-					<p class="mt-4 text-2xl text-white">
-						{$localize`A headless commerce storefront starter kit built with`}{' '}
-						<a
-							href="https://www.vendure.io"
-							target="_blank"
-							class="text-blue-300 hover:text-blue-500"
-						>
-							Vendure
-						</a>{' '}
-						&{' '}
-						<a
-							href="https://qwik.builder.io/"
-							target="_blank"
-							class="text-[#4092ff] hover:text-red-500"
-						>
-							Qwik
-						</a>
-					</p>
+				</div>
+				<div class=" w-full self-center">
+					<div class="relative order-first md:mt-10">
+						<img
+							class="  rounded-md bg-white/5 ring-1 ring-white/10"
+							src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+							alt="App screenshot"
+							width={1824}
+							height={1080}
+						/>
+					</div>
 				</div>
 			</div>
 
-			<section class="pt-12 xl:max-w-7xl xl:mx-auto xl:px-8">
+			<section class=" xl:max-w-7xl xl:mx-auto xl:px-8">
+				<div class="mt-4 flow-root">
+					<div class="-my-2">
+						{collections.map((collection) =>
+							collection.featuredAsset ? (
+								<div
+									key={collection.id}
+									class="box-content py-2 px-2 relative overflow-x-auto xl:overflow-visible"
+								>
+									<FeaturedProductCard key={collection.id} collection={collection} />
+								</div>
+							) : null
+						)}
+					</div>
+				</div>
+			</section>
+
+			{/* <section class="pt-12 xl:max-w-7xl xl:mx-auto xl:px-8">
 				<div class="mt-4 flow-root">
 					<div class="-my-2">
 						<div class="box-content py-2 px-2 relative overflow-x-auto xl:overflow-visible">
@@ -65,7 +69,7 @@ export default component$(() => {
 						</div>
 					</div>
 				</div>
-			</section>
+			</section> */}
 		</div>
 	);
 });

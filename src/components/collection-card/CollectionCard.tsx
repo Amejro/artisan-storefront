@@ -7,7 +7,8 @@ interface IProps {
 	collection: Collection;
 }
 
-export default component$(({ collection }: IProps) => {
+export default component$(async ({ collection }: IProps) => {
+	// console.log(collection.slug);
 	return (
 		<Link href={`/collections/${collection.slug}`} key={collection.id}>
 			<div class="max-w-[300px] relative rounded-lg overflow-hidden hover:opacity-75 xl:w-auto mx-auto">
@@ -26,5 +27,16 @@ export default component$(({ collection }: IProps) => {
 				</span>
 			</div>
 		</Link>
+
+		//  {state?.products?.items?.map((item) => (
+		// 	<ProductCard
+		// 		key={item.productId}
+		// 		productAsset={item.productAsset}
+		// 		productName={item.productName}
+		// 		slug={item.slug}
+		// 		priceWithTax={item.priceWithTax}
+		// 		currencyCode={item.currencyCode}
+		// 	></ProductCard>
+		// ))}
 	);
 });
