@@ -67,7 +67,7 @@ export default component$(({ collection }: IProps) => {
 	});
 
 	useTask$(async () => {
-		const product = await searchQueryWithCollectionSlug(collection.slug);
+		const product = await searchQueryWithCollectionSlug(collection?.slug);
 
 		state.products = product;
 	});
@@ -76,21 +76,21 @@ export default component$(({ collection }: IProps) => {
 			<div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
 				<div class="flex justify-between items-center">
 					<div class="sm:px-6 lg:px-8 xl:px-0 pb-4">
-						<h2 class="text-2xl font-bold tracking-tight text-gray-900">{collection.name}</h2>
+						<h2 class="text-2xl font-bold tracking-tight text-gray-900">{collection?.name}</h2>
 					</div>
-					<Link href={`/collections/${collection.slug}`} key={collection.id}>
+					<Link href={`/collections/${collection?.slug}`} key={collection?.id}>
 						See more<span aria-hidden="true">→</span>
 					</Link>
 				</div>
 				<div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 					{state?.products?.items?.map((item) => (
 						<ProductCard
-							key={item.productId}
-							productAsset={item.productAsset}
-							productName={item.productName}
-							slug={item.slug}
-							priceWithTax={item.priceWithTax}
-							currencyCode={item.currencyCode}
+							key={item?.productId}
+							productAsset={item?.productAsset}
+							productName={item?.productName}
+							slug={item?.slug}
+							priceWithTax={item?.priceWithTax}
+							currencyCode={item?.currencyCode}
 						></ProductCard>
 					))}
 				</div>

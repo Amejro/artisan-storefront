@@ -137,14 +137,14 @@ export default component$(() => {
 				)}
 				<div class="sm:col-span-5 lg:col-span-4">
 					<div class="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-						{state.search.items.map((item) => (
+						{state?.search?.items?.map((item) => (
 							<ProductCard
-								key={item.productId}
-								productAsset={item.productAsset}
-								productName={item.productName}
-								slug={item.slug}
-								priceWithTax={item.priceWithTax}
-								currencyCode={item.currencyCode}
+								key={item?.productId}
+								productAsset={item?.productAsset}
+								productName={item?.productName}
+								slug={item?.slug}
+								priceWithTax={item?.priceWithTax}
+								currencyCode={item?.currencyCode}
 							></ProductCard>
 						))}
 					</div>
