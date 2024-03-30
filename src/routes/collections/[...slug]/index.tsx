@@ -21,7 +21,6 @@ import {
 } from '~/utils';
 
 export const useCollectionLoader = routeLoader$(async ({ params }) => {
-	console.log(params?.slug);
 	return await getCollectionBySlug(params.slug);
 });
 
